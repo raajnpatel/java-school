@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @RestController
@@ -36,8 +37,7 @@ public class CourseController
     {
         logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        ArrayList<CountStudentsInCourses> countList = courseService.getCountStudentsInCourse();
-        return new ResponseEntity<>(countList, HttpStatus.OK);
+        return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
 
     @DeleteMapping("/courses/{courseid}")

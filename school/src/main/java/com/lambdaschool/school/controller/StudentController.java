@@ -37,7 +37,7 @@ public class StudentController
         return new ResponseEntity<>(myStudents, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/Student/{StudentId}",
+    @GetMapping(value = "/student/{StudentId}",
             produces = {"application/json"})
     public ResponseEntity<?> getStudentById(
             @PathVariable
