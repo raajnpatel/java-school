@@ -17,16 +17,15 @@ import java.util.ArrayList;
 @RequestMapping(value = "/courses")
 public class CourseController
 {
-
-    private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
-
     @Autowired
     private CourseService courseService;
+
+    private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
     @GetMapping(value = "/courses", produces = {"application/json"})
     public ResponseEntity<?> listAllCourses(HttpServletRequest request)
     {
-        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+        logger.info(request.getMethod() + " " + request.getRequestURI() + " just accessed!");
 
         ArrayList<Course> myCourses = courseService.findAll();
         return new ResponseEntity<>(myCourses, HttpStatus.OK);
@@ -35,7 +34,7 @@ public class CourseController
     @GetMapping(value = "/studcount", produces = {"application/json"})
     public ResponseEntity<?> getCountStudentsInCourses(HttpServletRequest request)
     {
-        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+        logger.info(request.getMethod() + " " + request.getRequestURI() + " just accessed!");
 
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
@@ -43,7 +42,7 @@ public class CourseController
     @DeleteMapping("/courses/{courseid}")
     public ResponseEntity<?> deleteCourseById(@PathVariable long courseid, HttpServletRequest request)
     {
-        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + courseid + " accessed");
+        logger.info(request.getMethod() + " " + request.getRequestURI() + " just accessed! Parameter: " + courseid);
 
         courseService.delete(courseid);
         return new ResponseEntity<>(HttpStatus.OK);
